@@ -14,6 +14,13 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # Use an environment to require approval 
+    # before publishing the Docker image
+    # Execution will be paused until a reviewer approves the job :)
+    environment:
+      name: publish-approval
+
     permissions:
       contents: read
       packages: write
