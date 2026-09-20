@@ -40,4 +40,4 @@ The webserver can then be accessed at `http://localhost:3000`.
 ## Docker automatic image building
 Each time a commit is pushed to the main branch or if a new tag (in the `v*.*.*` format) is created, the workflow _Docker publish_ (found in the `.github/workflows/docker-publish.yml` file) is run.
 
-The workflow builds the Docker image for the project (using the `Dockerfile` found in the project root), logs in to the `ghcr.io` registry and publishes it if the event **is a tag creation**. In the case where no tag has been pushed (only a regular push), the container is still built, but not pushed (the build can still be found as an artifact in the action).
+The workflow builds the Docker image for the project (using the `Dockerfile` found in the project root), logs in to the `ghcr.io` registry and publishes it if the event **is a tag creation**.
