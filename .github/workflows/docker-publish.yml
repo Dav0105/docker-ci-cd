@@ -1,9 +1,6 @@
 name: Docker publish
 
-on:
-  push:
-    branches: ["main"]
-    tags: ["v*.*.*"]
+on: [push]
 
 env:
   # Use docker.io for Docker Hub if empty
