@@ -37,8 +37,13 @@ docker run -p 3000:3000 docker-ci-cd
 
 The webserver can then be accessed at `http://localhost:3000`.
 
-## Docker automatic image building
-Each time a commit is pushed to the main branch or if a new tag (in the `v*.*.*` format) is created, the workflow _Docker publish_ (found in the `.github/workflows/docker-publish.yml` file) is run.
-
-The workflow builds the Docker image for the project (using the `Dockerfile` found in the project root), logs in to the `ghcr.io` registry and publishes it if the event **is a tag creation**.
-In the case where no tag has been pushed (only a regular push), the container is still built, but not pushed (the build can still be found as an artifact in the action).
+## CI/CD
+This repository contains a single workflow (found in the `.github/workflows/docker-publish.yml` file), which contains the two following jobs:
+- `test` executing the tests and checking for eventual errors
+- `build` building, publishing the artifact and Docker image to the `ghcr.io` registry, using the `Dockerfile` in the project's root.
+  - *This job waits for `test` to finish and runs only if there were no errors.*
+  - *Only executes after a reviewer approves the execution.*
+---
+**Note: Do not confuse artifact and pushed images.**
+- **Artifacts** are generated on each workflow build before publishing the image. Those can be found on the action tab, within the workflow run.
+- **Pushed image** corresponds to the image that can be found on the _Packages_ tab of the repo. It is the image published on the `ghcr.io` repository.
