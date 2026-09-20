@@ -40,6 +40,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
           <h2>This project is amazing!</h2>
+          <p>123 Hello!</p>
         </div>
       </main>
     </div>
